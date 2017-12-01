@@ -115,7 +115,13 @@
 
 
       QUnit.test("remove contact tests", function (assert) {
-        assert.ok(false);
+          var button = $('table tbody td a');
+          button[0].click();
+          var contactList = Contact.Contacts.instance();
+          var iterator=contactList.iterator();
+          var actualContact=iterator.next();
+
+        assert.equal(actualContact.firstName(), "Jacques");
       });
 
       QUnit.test("sort contact tests", function (assert) {
