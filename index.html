@@ -125,7 +125,26 @@
       });
 
       QUnit.test("sort contact tests", function (assert) {
-        assert.ok(false);
+          var contactList = Contact.Contacts.instance();
+          var tabName = [];
+          var it=contactList.iterator();
+          var button = $('#button_sort');
+          button[0].click();
+
+          var tableau = $('table tbody tr td');
+          var iteration = 0;
+
+          while(it.hasNext()) {
+              contactList = it.next();
+              tabName[iteration] = contactList.lastName();
+              iteration += 1;
+          }
+          tabName.sort();
+          var indice=1;
+          for(var i=0; i < tabName.length; i++){
+              assert.equal(tabName[i], tableau[indice].innerText);
+              indice += 6 ;
+          }
       });
     </script>
     <!-- END - Les tests -->
@@ -136,3 +155,4 @@
 <div id="qunit"></div>
 </body>
 </html>
+
