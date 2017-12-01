@@ -77,22 +77,42 @@
           var contact = Contact.Contacts.instance();
           var iterator=contact.iterator();
           var actualContact;
-          itelist=0;
+          iteratorlist=0;
           var listeContact = $('table tbody tr td');
 
           while(iterator.hasNext() != "") {
-              actualContact = iterator.next();
-              assert.equal(listeContact[itelist].innerText, actualContact.firstName());
-              itelist += 1;
-              assert.equal(listeContact[itelist].innerText, actualContact.lastName());
-              itelist += 5;
+              contactCourant = iterator.next();
+              assert.equal(listeContact[iteratorlist].innerText, contactCourant.firstName());
+              iteratorlist += 1;
+              assert.equal(listeContact[iteratorlist].innerText, contactCourant.lastName());
+              iteratorlist += 5;
           }
-          ;
       });
 
       QUnit.test("first entry tests", function (assert) {
-        assert.ok(false);
+          var listeContact = $('table tbody tr td');
+          iterationlist=0;
+          assert.equal(listeContact[iterationlist].innerText, "Eric");
+          iterationlist++;
+          assert.equal(listeContact[iterationlist].innerText, "RAMAT");
+          iterationlist++;
+
+          var numA = "0616642258";
+          var numB = "0321465676";
+          assert.equal(listeContact[iterationlist].innerText.split('/')[0].split('[')[0],numA);
+          assert.equal(listeContact[iterationlist].innerText.split('/')[1].split('[')[0],numB);
+          iterationlist++;
+
+          var mailA="ramat@lisic.univ-littoral.fr";
+          var mailB="eric.ramat@gmail.com";
+          assert.equal(listeContact[iterationlist].innerText.split('/')[0].split('[')[0], mailA);
+          assert.equal(listeContact[iterationlist].innerText.split('/')[1].split('[')[0], mailB);
+          iterationlist++;
+
+          assert.equal(listeContact[iterationlist].innerText, "prof");
       });
+
+
 
       QUnit.test("remove contact tests", function (assert) {
         assert.ok(false);
